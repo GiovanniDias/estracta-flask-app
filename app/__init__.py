@@ -1,21 +1,12 @@
 from flask import Flask
-from dynaconf import FlaskDynaconf
-
-
-app_name = "eStracta Flask App"
+from .extensions import settings, cors, database
 
 
 def create_app(**config):
     app = Flask(__name__)
-
-    FlaskDynaconf(app, **config)
-
+    settings.init_app(app, **config)
+    database.init_app(app)
     # TODO: Set api endpoints
-
-    @app.get("/")
-    def index():
-        return app_name
-
-    # TODO: Apply CORS
+    cors.init_app(app)
 
     return app
