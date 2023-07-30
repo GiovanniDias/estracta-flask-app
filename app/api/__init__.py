@@ -1,8 +1,8 @@
-from .companies import bp as companies_bp
+from .resource import bp as company_bp
 
 
 def init_app(app):
-    app.register_blueprint(companies_bp)
+    app.register_blueprint(company_bp)
 
     @app.route('/')
     def index():
